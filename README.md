@@ -20,7 +20,7 @@ O projeto demonstra uma abordagem de desenvolvimento orientada a problemas reais
 
 Confira o funcionamento do FinaTermo, desde o preenchimento dos dados dos equipamentos até a captura das assinaturas e a geração do documento PDF.
 
-🎥 **[Assistir à demonstração do FinaTermo](videos/demo-termo-ti.mp4)**
+🎥 **[Assistir à demonstração do FinaTermo](https://youtu.be/_Z4ZNK39ZsM)**
 
 ## Imagens do sistema
 
