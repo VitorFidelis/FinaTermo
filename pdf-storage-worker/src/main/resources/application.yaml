@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: pdf-storage-worker
+  config:
+    import: ${SPRING_CONFIG_IMPORT:configserver:http://localhost:8888}
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://discover-server:8761/eureka/}
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+    prefer-ip-address: true

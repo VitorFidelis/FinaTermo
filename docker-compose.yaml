@@ -1,0 +1,200 @@
+version: '3.8'
+
+services:
+  # --- BANCO DE DADOS & GERENCIAMENTO ---
+  postgres:
+    image: postgres:16-alpine
+    container_name: postgres-db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=${DATASOURCE_USERNAME}
+      - POSTGRES_PASSWORD=${DATASOURCE_PASSWORD}
+      - POSTGRES_DB=${DATASOURCE_DB_NAME}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - termoti-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  pgadmin:
+    image: dpage/pgadmin4:8.14
+    container_name: pgadmin-web
+    ports:
+      - "5050:80"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    networks:
+      - termoti-network
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  # --- MENSAGERIA ---
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: rabbitmq-broker
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_USERNAME}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_PASSWORD}
+    networks:
+      - termoti-network
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # --- INFRAESTRUTURA SPRING CLOUD ---
+  discover-server:
+    build: ./discover-server
+    container_name: discover-server
+    ports:
+      - "8761:8761"
+    environment:
+      - EUREKA_CLIENT_REGISTER_WITH_EUREKA=false
+      - EUREKA_CLIENT_FETCH_REGISTRY=false
+    networks:
+      - termoti-network
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8761/actuator/health || wget -qO- http://localhost:8761/ || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  config-server:
+    build: ./config-server
+    container_name: config-server
+    ports:
+      - "8888:8888"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE}
+      - EUREKA_INSTANCE_PREFER_IP_ADDRESS=true
+      - SPRING_RABBITMQ_SSL_ENABLED=false
+    healthcheck:
+      test: ["CMD", "sh", "-c", "wget -qO- http://localhost:8888/actuator/health || wget -qO- http://localhost:8888/application/default || exit 1"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 15s
+    networks:
+      - termoti-network
+    depends_on:
+      discover-server:
+        condition: service_healthy
+
+  admin-server:
+    build: ./admin-server
+    container_name: admin-server
+    ports:
+      - "9090:9090"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE}
+      - EUREKA_INSTANCE_PREFER_IP_ADDRESS=true
+      - SPRING_RABBITMQ_SSL_ENABLED=false
+      - EUREKA_INSTANCE_INSTANCE_ID=admin-server-docker
+    networks:
+      - termoti-network
+    depends_on:
+      discover-server:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:9090/actuator/health || wget -qO- http://localhost:9090/ || exit 1"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  # --- MICROSSERVIÇOS DA APLICAÇÃO ---
+  termo-ti:
+    build: ./termo-ti
+    container_name: termo-ti
+    ports:
+      - "8080:8080"
+    command: ["java", "-Duser.timezone=America/Sao_Paulo", "-jar", "app.jar"]
+    environment:
+      - SPRING_CONFIG_IMPORT=${SPRING_CONFIG_IMPORT}
+      - SPRING_CLOUD_CONFIG_FAIL_FAST=true
+      - SPRING_CLOUD_CONFIG_RETRY_INITIAL_INTERVAL=1000
+      - SPRING_CLOUD_CONFIG_RETRY_MAX_INTERVAL=3000
+      - SPRING_CLOUD_CONFIG_RETRY_MAX_ATTEMPTS=6
+      - SPRING_CLOUD_CONFIG_RETRY_MULTIPLIER=1.1
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE}
+      - SPRING_BOOT_ADMIN_CLIENT_URL=http://admin-server:9090
+      - EUREKA_INSTANCE_PREFER_IP_ADDRESS=true
+      - SPRING_DATASOURCE_URL=${DATASOURCE_URL}
+      - SPRING_DATASOURCE_USERNAME=${DATASOURCE_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${DATASOURCE_PASSWORD}
+      - SPRING_RABBITMQ_HOST=${RABBITMQ_HOST}
+      - SPRING_RABBITMQ_PORT=${RABBITMQ_PORT}
+      - SPRING_RABBITMQ_USERNAME=${RABBITMQ_USERNAME}
+      - SPRING_RABBITMQ_PASSWORD=${RABBITMQ_PASSWORD}
+      - SPRING_RABBITMQ_SSL_ENABLED=false
+    networks:
+      - termoti-network
+    depends_on:
+      discover-server:
+        condition: service_healthy
+      config-server:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+      admin-server:
+        condition: service_healthy
+    volumes:
+      - ./uploads/assinaturas:/app/uploads/assinaturas
+      - ./logs:/app/logs
+
+  pdf-storage-worker:
+    build: ./pdf-storage-worker
+    container_name: pdf-storage-worker
+    command: ["java", "-Duser.timezone=America/Sao_Paulo", "-jar", "app.jar"]
+    environment:
+      - SPRING_CONFIG_IMPORT=${SPRING_CONFIG_IMPORT}
+      - SPRING_CLOUD_CONFIG_FAIL_FAST=true
+      - SPRING_CLOUD_CONFIG_RETRY_INITIAL_INTERVAL=1000
+      - SPRING_CLOUD_CONFIG_RETRY_MAX_INTERVAL=3000
+      - SPRING_CLOUD_CONFIG_RETRY_MAX_ATTEMPTS=6
+      - SPRING_CLOUD_CONFIG_RETRY_MULTIPLIER=1.1
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE}
+      - SPRING_BOOT_ADMIN_CLIENT_URL=http://admin-server:9090
+      - EUREKA_INSTANCE_PREFER_IP_ADDRESS=true
+      - SPRING_RABBITMQ_HOST=${RABBITMQ_HOST}
+      - SPRING_RABBITMQ_PORT=${RABBITMQ_PORT}
+      - SPRING_RABBITMQ_USERNAME=${RABBITMQ_USERNAME}
+      - SPRING_RABBITMQ_PASSWORD=${RABBITMQ_PASSWORD}
+      - SPRING_RABBITMQ_SSL_ENABLED=false
+    networks:
+      - termoti-network
+    depends_on:
+      discover-server:
+        condition: service_healthy
+      config-server:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+      admin-server:
+        condition: service_healthy
+    volumes:
+      - ./uploads/assinaturas:/app/uploads/assinaturas
+      - ./logs:/app/logs
+
+volumes:
+  pgdata:
+  pgadmin_data:
+
+networks:
+  termoti-network:
+    driver: bridge

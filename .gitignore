@@ -1,3 +1,17 @@
+
+# ==============================
+# Java
+# ==============================
+*.class
+*.jar
+*.war
+*.ear
+hs_err_pid*
+replay_pid*
+
+# ==============================
+# Maven
+# ==============================
 target/
 pom.xml.tag
 pom.xml.releaseBackup
@@ -5,13 +19,55 @@ pom.xml.versionsBackup
 pom.xml.next
 release.properties
 dependency-reduced-pom.xml
-buildNumber.properties
-.mvn/timing.properties
-# https://maven.apache.org/tools/wrapper/#Usage_with_or_without_Binary_JAR
-.mvn/wrapper/maven-wrapper.jar
 
-# Eclipse m2e generated files
-# Eclipse Core
+# ==============================
+# IDEs e editores
+# ==============================
+.idea/
+*.iml
+.vscode/
 .project
-# JDT-specific (Eclipse Java Development Tools)
 .classpath
+.settings/
+.factorypath
+
+# ==============================
+# Sistema operacional
+# ==============================
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# ==============================
+# Variáveis de ambiente e segredos
+# ==============================
+.env
+.env.*
+!.env.example
+!.env.examplo
+!.env.sample
+
+# Chaves e certificados privados
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+
+# ==============================
+# Logs
+# ==============================
+*.log
+logs/
+
+# ==============================
+# Docker e dados locais
+# ==============================
+docker-compose.override.yml
+
+# ==============================
+# Arquivos gerados pelo sistema
+# ==============================
+uploads/assinaturas/*
+!uploads/assinaturas/.gitkeep

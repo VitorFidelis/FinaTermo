@@ -1,0 +1,12 @@
+spring:
+  boot:
+    admin:
+      client:
+        enabled: false # Impede o servidor de tentar monitorar a si mesmo como cliente
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://discover-server:8761/eureka/}
+  instance:
+    instance-id: ${spring.application.name}:${EUREKA_INSTANCE_INSTANCE_ID:admin-server-docker}
+    prefer-ip-address: true

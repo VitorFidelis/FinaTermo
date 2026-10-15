@@ -1,0 +1,16 @@
+server:
+  port: 9090
+
+spring:
+  application:
+    name: admin-server
+  config:
+    import: "optional:${SPRING_CONFIG_IMPORT:configserver:http://config-server:8888}"
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://discover-server:8761/eureka/}
+  instance:
+    instance-id: ${spring.application.name}:${EUREKA_INSTANCE_INSTANCE_ID:admin-server-docker}
+    prefer-ip-address: true

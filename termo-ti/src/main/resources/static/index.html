@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Termo de Recebimento | TI</title>
+</head>
+
+<body>
+    <div class="pagina">
+        <!-- =====================================================
+         CABEÇALHO
+    ====================================================== -->
+
+        <header class="cabecalho">
+
+            <div class="container cabecalho-conteudo">
+
+                <div class="logo-ti">
+                    TI
+                </div>
+
+                <div class="cabecalho-info">
+
+                    <h1>
+                        Termo de Recebimento
+                    </h1>
+
+                    <p>
+                        Registro de equipamentos entregues ao colaborador
+                    </p>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- =====================================================
+         CONTEÚDO PRINCIPAL
+    ====================================================== -->
+
+        <main class="container termo-container">
+
+            <form id="formTermo">
+
+
+                <!-- =================================================
+                 IDENTIFICAÇÃO
+            ================================================== -->
+
+                <section class="secao-identificacao">
+
+                    <div class="identificacao-linha">
+
+                        <span>
+                            Eu,
+                        </span>
+
+                        <input type="text" id="nome" name="nome" class="input-linha"
+                            placeholder="Nome completo do colaborador" autocomplete="name" required>
+
+                        <span>
+                            do setor
+                        </span>
+
+                        <input type="text" id="setor" name="setor" class="input-linha" placeholder="Nome do setor"
+                            required>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                 DECLARAÇÃO
+            ================================================== -->
+
+                <section class="declaracao">
+
+                    <p>
+                        Declaro ter recebido em perfeito estado de
+                        conservação e funcionamento os equipamentos
+                        abaixo relacionados.
+                    </p>
+
+                </section>
+
+
+                <!-- =================================================
+                 EQUIPAMENTOS
+            ================================================== -->
+
+                <section class="equipamentos-container">
+
+
+                    <div class="equipamentos-header">
+
+                        <div>
+
+                            <h2>
+                                Equipamentos Retirados
+                            </h2>
+
+                            <p>
+                                Adicione os equipamentos entregues
+                                ao colaborador.
+                            </p>
+
+                        </div>
+
+
+                        <button type="button" id="btnAbrirModalEquipamento" class="btn btn-primary">
+                            + Adicionar equipamento
+                        </button>
+
+                    </div>
+
+
+                    <!-- Contador -->
+
+                    <div class="contador-area">
+
+                        <div id="carrinhoContador">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
+                                viewBox="0 0 16 16">
+
+                                <path
+                                    d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5" />
+
+                                <path
+                                    d="M5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+
+                            </svg>
+
+                            <span id="contadorTexto">
+                                Nenhum equipamento
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Tabela -->
+
+                    <div class="table-responsive tabela-wrapper">
+
+                        <table class="table tabela-equipamentos">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        Descrição
+                                    </th>
+
+                                    <th>
+                                        Quantidade
+                                    </th>
+
+                                    <th>
+                                        Patrimônio
+                                    </th>
+
+                                    <th class="text-center">
+                                        Ação
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="listaEquipamentos">
+
+                            </tbody>
+
+                        </table>
+
+
+                        <!-- Estado vazio -->
+
+                        <div id="listaVazia" class="lista-vazia">
+
+                            <div class="lista-vazia-icone">
+                                +
+                            </div>
+
+                            <p>
+                                Nenhum equipamento adicionado.
+                            </p>
+
+                            <span>
+                                Clique em "Adicionar equipamento"
+                                para começar.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                 ASSINATURAS
+            ================================================== -->
+
+                <section class="assinaturas-container">
+
+
+                    <div class="assinaturas-header">
+
+                        <h2>
+                            Assinaturas
+                        </h2>
+
+                        <p>
+                            As duas assinaturas são obrigatórias
+                            para finalizar o termo.
+                        </p>
+
+                    </div>
+
+
+                    <div class="row g-3">
+
+
+                        <!-- COLABORADOR -->
+
+                        <div class="col-md-6">
+
+                            <div class="card assinatura-card">
+
+                                <div class="card-body">
+
+                                    <h3>
+                                        Assinatura do Colaborador
+                                    </h3>
+
+                                    <p class="descricao-assinatura">
+                                        Assine dentro do campo abaixo.
+                                    </p>
+
+
+                                    <div class="canvas-wrapper">
+
+                                        <canvas id="assinaturaColaborador" width="500" height="180"></canvas>
+
+                                    </div>
+
+
+                                    <button type="button" class="btn btn-outline-secondary btn-sm btn-limpar"
+                                        data-canvas="assinaturaColaborador">
+                                        Limpar assinatura
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- RESPONSÁVEL TI -->
+
+                        <div class="col-md-6">
+
+                            <div class="card assinatura-card">
+
+                                <div class="card-body">
+
+                                    <h3>
+                                        Responsável TI
+                                    </h3>
+
+                                    <p class="descricao-assinatura">
+                                        Assine dentro do campo abaixo.
+                                    </p>
+
+
+                                    <div class="canvas-wrapper">
+
+                                        <canvas id="assinaturaResponsavel" width="500" height="180"></canvas>
+
+                                    </div>
+
+
+                                    <button type="button" class="btn btn-outline-secondary btn-sm btn-limpar"
+                                        data-canvas="assinaturaResponsavel">
+                                        Limpar assinatura
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                 DATA
+            ================================================== -->
+
+                <div class="data-termo">
+
+                    <span>
+                        Data do recebimento:
+                    </span>
+
+                    <strong id="dataRecebimento">
+                        --
+                    </strong>
+
+                </div>
+
+
+                <!-- =================================================
+                 FINALIZAR
+            ================================================== -->
+
+                <div class="acoes-formulario">
+
+                    <button type="submit" id="btnSalvar" class="btn btn-primary">
+                        Salvar e Finalizar Termo
+                    </button>
+
+                </div>
+
+
+            </form>
+
+        </main>
+
+
+        <!-- =====================================================
+         RODAPÉ
+    ====================================================== -->
+
+        <footer>
+
+            <div class="container">
+
+                <span>
+                    Termo de Recebimento
+                </span>
+
+                <span>
+                    Departamento de Tecnologia da Informação
+                </span>
+
+            </div>
+
+        </footer>
+
+    </div>
+
+
+    <!-- =========================================================
+     MODAL EQUIPAMENTO
+========================================================= -->
+
+    <div class="modal fade" id="modalEquipamento" tabindex="-1" aria-labelledby="tituloModalEquipamento"
+        aria-hidden="true">
+
+        <div class="modal-dialog modal-dialog-centered">
+
+            <div class="modal-content">
+
+
+                <!-- Cabeçalho -->
+
+                <div class="modal-header">
+
+                    <div>
+
+                        <h2 class="modal-title" id="tituloModalEquipamento">
+                            Adicionar equipamento
+                        </h2>
+
+                        <p class="mb-0 text-muted small">
+                            Informe os dados do equipamento entregue.
+                        </p>
+
+                    </div>
+
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+
+                </div>
+
+
+                <!-- Corpo -->
+
+                <div class="modal-body">
+
+
+                    <!-- Descrição -->
+
+                    <div class="mb-3">
+
+                        <label for="descricaoEquipamento" class="form-label">
+                            Descrição
+                        </label>
+
+                        <input type="text" id="descricaoEquipamento" class="form-control"
+                            placeholder="Ex.: Notebook Dell Latitude 5420" autocomplete="off">
+
+                    </div>
+
+
+                    <!-- Quantidade / Patrimônio -->
+
+                    <div class="row g-3">
+
+
+                        <div class="col-4">
+
+                            <label for="quantidadeEquipamento" class="form-label">
+                                Quantidade
+                            </label>
+
+                            <input type="number" id="quantidadeEquipamento" class="form-control" min="1" value="1">
+
+                        </div>
+
+
+                        <div class="col-8">
+
+                            <label for="patrimonioEquipamento" class="form-label">
+                                Patrimônio
+                            </label>
+
+                            <input type="text" id="patrimonioEquipamento" class="form-control"
+                                placeholder="Ex.: PAT00123">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Rodapé -->
+
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Cancelar
+                    </button>
+
+
+                    <button type="button" id="btnConfirmarEquipamento" class="btn btn-primary">
+                        Adicionar equipamento
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+     BOOTSTRAP JS
+========================================================= -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

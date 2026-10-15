@@ -1,0 +1,21 @@
+# ==============================
+# BANCO DE DADOS
+# ==============================
+DATASOURCE_URL=jdbc:postgresql://postgres:5432/termo_db
+DATASOURCE_USERNAME=
+DATASOURCE_PASSWORD=
+DATASOURCE_DB_NAME=termo_db
+
+# ==============================
+# GERENCIADOR DE BANCO DE DADOS
+# ==============================
+PGADMIN_DEFAULT_EMAIL=
+PGADMIN_DEFAULT_PASSWORD=
+
+# ==============================
+# BROKER - RABBITMQ
+# ==============================
+RABBITMQ_HOST=rabbitmq
+RABBITMQ_PORT=5672
+RABBITMQ_USERNAME=
+RABBITMQ_PASSWORD=
