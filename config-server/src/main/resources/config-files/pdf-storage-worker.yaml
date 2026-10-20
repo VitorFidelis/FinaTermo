@@ -1,0 +1,21 @@
+server:
+  port: 8081
+spring:
+  boot:
+    admin:
+      client:
+        url: ${SPRING_BOOT_ADMIN_CLIENT_URL:http://admin-server:9090}
+  rabbitmq:
+    host: ${RABBITMQ_HOST}
+    port: ${RABBITMQ_PORT}
+    username: ${RABBITMQ_USERNAME}
+    password: ${RABBITMQ_PASSWORD}
+    ssl:
+      enabled: false
+rabbitmq:
+  queue:
+    name: terms.queue
+  exchange:
+    name: terms.exchange
+  routing-key:
+    name: terms.create.routingkey

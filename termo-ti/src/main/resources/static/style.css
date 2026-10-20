@@ -1,0 +1,1056 @@
+/* =====================================================
+    RESET
+====================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+    background: #f4f7fb;
+    color: #172033;
+
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+
+/* =====================================================
+   VARIÁVEIS
+====================================================== */
+
+:root {
+    --cor-primaria: #2563eb;
+    --cor-primaria-hover: #1d4ed8;
+
+    --cor-texto: #172033;
+    --cor-texto-secundario: #64748b;
+
+    --cor-borda: #e2e8f0;
+    --cor-borda-forte: #cbd5e1;
+
+    --cor-branco: #ffffff;
+
+    --sombra-card:
+        0 4px 18px rgba(15, 23, 42, 0.06);
+
+    --raio: 10px;
+
+    --transicao: 0.2s ease;
+}
+
+
+/* =====================================================
+   PÁGINA
+====================================================== */
+
+.pagina {
+    width: 100%;
+    min-height: 100vh;
+}
+
+
+/* =====================================================
+   CABEÇALHO
+====================================================== */
+
+.cabecalho {
+    width: 100%;
+
+    background: #0f172a;
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cabecalho-conteudo {
+    min-height: 72px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+}
+
+
+/* =====================================================
+   LOGO
+====================================================== */
+
+.logo-ti {
+    width: 42px;
+    height: 42px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(135deg,
+            #2563eb,
+            #3b82f6);
+
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 800;
+
+    letter-spacing: 0.5px;
+
+    box-shadow:
+        0 5px 14px rgba(37, 99, 235, 0.25);
+}
+
+
+/* =====================================================
+   TEXTOS DO CABEÇALHO
+====================================================== */
+
+.cabecalho-info {
+    min-width: 0;
+}
+
+.cabecalho-info h1 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 19px;
+    font-weight: 700;
+
+    line-height: 1.2;
+}
+
+.cabecalho-info p {
+    margin: 3px 0 0;
+
+    color: #94a3b8;
+
+    font-size: 12px;
+
+    line-height: 1.3;
+}
+
+
+/* =====================================================
+   CONTAINER PRINCIPAL
+====================================================== */
+
+.termo-container {
+    max-width: 1080px;
+
+    margin-top: 25px;
+    margin-bottom: 35px;
+}
+
+
+/* =====================================================
+   FORMULÁRIO
+====================================================== */
+
+#formTermo {
+    width: 100%;
+
+    padding: 28px;
+
+    background: #ffffff;
+
+    border:
+        1px solid var(--cor-borda);
+
+    border-radius:
+        14px;
+
+    box-shadow:
+        var(--sombra-card);
+}
+
+
+/* =====================================================
+   IDENTIFICAÇÃO
+====================================================== */
+
+.secao-identificacao {
+    margin-bottom: 20px;
+}
+
+.identificacao-linha {
+    display: flex;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 7px;
+
+    color: #334155;
+
+    font-size: 15px;
+}
+
+
+/* =====================================================
+   INPUTS EM LINHA
+====================================================== */
+
+.input-linha {
+    height: 32px;
+
+    padding: 2px 5px;
+
+    color: var(--cor-texto);
+
+    background: transparent;
+
+    border: none;
+
+    border-bottom:
+        1px solid var(--cor-borda-forte);
+
+    border-radius: 0;
+
+    outline: none;
+
+    font-size: 14px;
+
+    transition:
+        border-color var(--transicao);
+}
+
+#nome {
+    flex: 1;
+    min-width: 250px;
+}
+
+#setor {
+    width: 220px;
+}
+
+.input-linha::placeholder {
+    color: #94a3b8;
+}
+
+.input-linha:focus {
+    border-bottom-color:
+        var(--cor-primaria);
+}
+
+
+/* =====================================================
+   DECLARAÇÃO
+====================================================== */
+
+.declaracao {
+    margin-bottom: 25px;
+}
+
+.declaracao p {
+    margin: 0;
+
+    max-width: 900px;
+
+    color: #475569;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+/* =====================================================
+   EQUIPAMENTOS
+====================================================== */
+
+.equipamentos-container {
+    width: 100%;
+}
+
+
+/* =====================================================
+   CABEÇALHO EQUIPAMENTOS
+====================================================== */
+
+.equipamentos-header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 12px;
+}
+
+.equipamentos-header h2 {
+    margin: 0;
+
+    color: var(--cor-texto);
+
+    font-size: 17px;
+
+    font-weight: 700;
+}
+
+.equipamentos-header p {
+    margin: 3px 0 0;
+
+    color: var(--cor-texto-secundario);
+
+    font-size: 12px;
+}
+
+.equipamentos-header .btn {
+    flex-shrink: 0;
+
+    padding: 7px 13px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    border-radius: 7px;
+}
+
+
+/* =====================================================
+   CONTADOR
+====================================================== */
+
+.contador-area {
+    margin-bottom: 10px;
+}
+
+#carrinhoContador {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 5px 9px;
+
+    border:
+        1px solid #dbeafe;
+
+    border-radius: 7px;
+
+    background: #eff6ff;
+
+    color: #1e40af;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+
+/* =====================================================
+   TABELA
+====================================================== */
+
+.tabela-wrapper {
+    border:
+        1px solid var(--cor-borda);
+
+    border-radius: 8px;
+
+    overflow: hidden;
+
+    background: #ffffff;
+}
+
+.tabela-equipamentos {
+    width: 100%;
+
+    margin: 0;
+
+    font-size: 13px;
+}
+
+.tabela-equipamentos thead {
+    background: #f8fafc;
+}
+
+.tabela-equipamentos thead th {
+    padding: 10px 12px;
+
+    color: #475569;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.3px;
+
+    border-bottom:
+        1px solid var(--cor-borda);
+}
+
+.tabela-equipamentos tbody td {
+    padding: 10px 12px;
+
+    color: #334155;
+
+    font-size: 13px;
+
+    vertical-align: middle;
+
+    border-bottom:
+        1px solid #edf1f5;
+}
+
+.tabela-equipamentos tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.tabela-equipamentos tbody tr:hover {
+    background: #f8fafc;
+}
+
+
+/* =====================================================
+   ESTADO VAZIO
+====================================================== */
+
+.lista-vazia {
+    padding: 28px 20px;
+
+    text-align: center;
+
+    color: var(--cor-texto-secundario);
+}
+
+.lista-vazia-icone {
+    width: 32px;
+    height: 32px;
+
+    margin: 0 auto 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border:
+        1px dashed #cbd5e1;
+
+    border-radius: 8px;
+
+    color: #94a3b8;
+
+    font-size: 18px;
+}
+
+.lista-vazia p {
+    margin: 0 0 2px;
+
+    color: #475569;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+.lista-vazia span {
+    font-size: 12px;
+
+    color: #94a3b8;
+}
+
+
+/* =====================================================
+   BOTÃO REMOVER
+====================================================== */
+
+.btn-remover {
+    width: 30px;
+    height: 30px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border:
+        1px solid #fecaca;
+
+    border-radius: 6px;
+
+    background: #fef2f2;
+
+    color: #dc2626;
+
+    cursor: pointer;
+
+    font-size: 13px;
+
+    transition:
+        all var(--transicao);
+}
+
+.btn-remover:hover {
+    background: #fee2e2;
+
+    border-color: #fca5a5;
+
+    color: #b91c1c;
+}
+
+
+/* =====================================================
+   ASSINATURAS
+====================================================== */
+
+.assinaturas-container {
+    margin-top: 28px;
+}
+
+.assinaturas-header {
+    margin-bottom: 12px;
+}
+
+.assinaturas-header h2 {
+    margin: 0;
+
+    color: var(--cor-texto);
+
+    font-size: 17px;
+
+    font-weight: 700;
+}
+
+.assinaturas-header p {
+    margin: 3px 0 0;
+
+    color: var(--cor-texto-secundario);
+
+    font-size: 12px;
+}
+
+
+/* =====================================================
+   CARDS DE ASSINATURA
+====================================================== */
+
+.assinatura-card {
+    height: 100%;
+
+    border:
+        1px solid var(--cor-borda) !important;
+
+    border-radius: 9px !important;
+
+    box-shadow: none !important;
+}
+
+.assinatura-card .card-body {
+    padding: 16px;
+}
+
+.assinatura-card h3 {
+    margin: 0;
+
+    color: var(--cor-texto);
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+.descricao-assinatura {
+    margin: 3px 0 10px;
+
+    color: #94a3b8;
+
+    font-size: 11px;
+}
+
+
+/* =====================================================
+   CANVAS
+====================================================== */
+
+.canvas-wrapper {
+    position: relative;
+
+    width: 100%;
+
+    height: 135px;
+
+    overflow: hidden;
+
+    border:
+        1px dashed #cbd5e1;
+
+    border-radius: 7px;
+
+    background:
+        linear-gradient(180deg,
+            #ffffff,
+            #f8fafc);
+}
+
+.canvas-wrapper::after {
+    content: "";
+
+    position: absolute;
+
+    left: 15px;
+    right: 15px;
+
+    bottom: 25px;
+
+    height: 1px;
+
+    background: #cbd5e1;
+
+    pointer-events: none;
+}
+
+.canvas-wrapper canvas {
+    display: block;
+
+    width: 100%;
+    height: 135px;
+
+    cursor: crosshair;
+
+    touch-action: none;
+}
+
+
+/* =====================================================
+   BOTÃO LIMPAR
+====================================================== */
+
+.btn-limpar {
+    margin-top: 8px;
+
+    padding: 4px 8px;
+
+    font-size: 11px;
+
+    border-radius: 6px;
+}
+
+
+/* =====================================================
+   DATA
+====================================================== */
+
+.data-termo {
+    margin-top: 22px;
+
+    padding-top: 16px;
+
+    border-top:
+        1px solid var(--cor-borda);
+
+    color: #475569;
+
+    font-size: 13px;
+}
+
+.data-termo strong {
+    margin-left: 4px;
+
+    color: var(--cor-texto);
+
+    font-weight: 600;
+}
+
+
+/* =====================================================
+   AÇÕES
+====================================================== */
+
+.acoes-formulario {
+    margin-top: 18px;
+
+    display: flex;
+
+    justify-content: flex-end;
+}
+
+#btnSalvar {
+    min-height: 40px;
+
+    padding: 7px 18px;
+
+    border-radius: 7px;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+.btn-primary {
+    background: var(--cor-primaria);
+
+    border-color: var(--cor-primaria);
+}
+
+.btn-primary:hover {
+    background: var(--cor-primaria-hover);
+
+    border-color: var(--cor-primaria-hover);
+}
+
+
+/* =====================================================
+   MODAL
+====================================================== */
+
+.modal-content {
+    border: none;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 20px 50px rgba(15, 23, 42, 0.20);
+}
+
+.modal-header {
+    padding: 17px 20px;
+
+    border-bottom:
+        1px solid var(--cor-borda);
+}
+
+.modal-title {
+    color: var(--cor-texto);
+
+    font-size: 17px;
+
+    font-weight: 700;
+}
+
+.modal-header p {
+    font-size: 12px;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.modal-footer {
+    padding: 14px 20px;
+
+    background: #f8fafc;
+
+    border-top:
+        1px solid var(--cor-borda);
+}
+
+.modal .form-label {
+    margin-bottom: 5px;
+
+    color: #334155;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+.modal .form-control {
+    min-height: 38px;
+
+    padding: 7px 10px;
+
+    border:
+        1px solid var(--cor-borda-forte);
+
+    border-radius: 7px;
+
+    font-size: 13px;
+
+    box-shadow: none;
+}
+
+.modal .form-control:focus {
+    border-color:
+        var(--cor-primaria);
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.10);
+}
+
+.modal-footer .btn {
+    padding: 7px 13px;
+
+    font-size: 13px;
+
+    border-radius: 7px;
+}
+
+
+/* =====================================================
+   RODAPÉ
+====================================================== */
+
+footer {
+    border-top:
+        1px solid var(--cor-borda);
+
+    background:
+        #ffffff;
+
+    color:
+        #64748b;
+
+    font-size:
+        11px;
+}
+
+footer .container {
+    min-height:
+        48px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        15px;
+}
+
+
+/* =====================================================
+   VALIDAÇÃO
+====================================================== */
+
+.input-invalido {
+    border-color:
+        #dc2626 !important;
+}
+
+
+/* =====================================================
+   ACESSIBILIDADE
+====================================================== */
+
+button:focus-visible,
+input:focus-visible,
+canvas:focus-visible {
+    outline:
+        2px solid rgba(37, 99, 235, 0.30);
+
+    outline-offset:
+        2px;
+}
+
+
+/* =====================================================
+   TABLET
+====================================================== */
+
+@media (max-width: 768px) {
+
+    #formTermo {
+        padding: 22px;
+    }
+
+    .termo-container {
+        margin-top: 18px;
+    }
+
+    .equipamentos-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 10px;
+    }
+
+    .equipamentos-header .btn {
+        width: auto;
+    }
+
+    #nome {
+        min-width: 200px;
+    }
+
+    #setor {
+        width: 180px;
+    }
+}
+
+
+/* =====================================================
+   CELULAR
+====================================================== */
+
+@media (max-width: 576px) {
+
+    body {
+        background: #ffffff;
+    }
+
+    .cabecalho-conteudo {
+        min-height: 64px;
+
+        gap: 10px;
+    }
+
+    .logo-ti {
+        width: 38px;
+        height: 38px;
+
+        border-radius: 9px;
+
+        font-size: 13px;
+    }
+
+    .cabecalho-info h1 {
+        font-size: 16px;
+    }
+
+    .cabecalho-info p {
+        font-size: 10px;
+    }
+
+    .termo-container {
+        width: 100%;
+        max-width: 100%;
+
+        margin: 0;
+        padding: 0;
+    }
+
+    #formTermo {
+        padding: 20px 16px;
+
+        border: none;
+
+        border-radius: 0;
+
+        box-shadow: none;
+    }
+
+    .identificacao-linha {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 4px;
+
+        font-size: 14px;
+    }
+
+    #nome,
+    #setor {
+        width: 100%;
+
+        min-width: 0;
+    }
+
+    .equipamentos-header .btn {
+        width: 100%;
+    }
+
+    .tabela-wrapper {
+        overflow-x: auto;
+    }
+
+    .tabela-equipamentos {
+        min-width: 600px;
+    }
+
+    .assinaturas-container {
+        margin-top: 24px;
+    }
+
+    .canvas-wrapper {
+        height: 130px;
+    }
+
+    .canvas-wrapper canvas {
+        height: 130px;
+    }
+
+    .data-termo {
+        margin-top: 18px;
+    }
+
+    .acoes-formulario {
+        margin-top: 15px;
+    }
+
+    #btnSalvar {
+        width: 100%;
+    }
+
+    footer .container {
+        min-height: 60px;
+
+        padding-top: 10px;
+        padding-bottom: 10px;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        justify-content: center;
+    }
+
+    .modal-dialog {
+        margin: 10px;
+    }
+
+    .modal-header,
+    .modal-body {
+        padding: 16px;
+    }
+
+    .modal-footer {
+        padding: 12px 16px;
+    }
+}
+
+
+/* =====================================================
+   REDUÇÃO DE MOVIMENTO
+====================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+
+        transition: none !important;
+
+        animation: none !important;
+    }
+}
